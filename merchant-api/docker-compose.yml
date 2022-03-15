@@ -1,0 +1,32 @@
+version: '3'
+services:
+  app:
+    build:
+      context: ./
+    volumes:
+      - .:/go/src/merchant-api
+    container_name: merchant-api
+    ports:
+      - 8080:8080
+    links: 
+      - db
+    networks:
+      - db-data
+
+  db:
+    build:
+      context: ./db/
+    container_name: merchant-api-db
+    volumes:
+      - ./db/sql:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
+    networks:
+      - db-data
+    environment:
+      MYSQL_ROOT_PASSWORD: majoo
+      MYSQL_DATABASE: majootest
+
+networks:
+  db-data:
+    driver: bridge
