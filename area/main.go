@@ -1,9 +1,13 @@
 package main
 
 import (
+	"area/models"
+	repositories "area/repository"
 	"fmt"
 )
 
 func main() {
-	fmt.Println("test")
+	repositories.InsertArea(10, 10, "persegi", &models.Area{})
+
+	fmt.Println("success")
 }

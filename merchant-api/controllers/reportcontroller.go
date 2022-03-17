@@ -9,8 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func GetTransaction(c *gin.Context) {
-	var transactions []models.Transaction
+func GetReport(c *gin.Context) {
 	claim, flag := utils.ExtractClaim(c.Request.Header.Get("Authorization"))
 
 	if !flag {
@@ -24,13 +23,20 @@ func GetTransaction(c *gin.Context) {
 
 	tokenresult := claim.(map[string]interface{})
 
-	db.Connect().Where("merchant_id = ?", tokenresult["userid"]).Find(&transactions)
+	result, _ := models.GetReport(db.Connect(), tokenresult["userid"].(float64))
 
-	message := "Get Transaction"
+	if len(result) == 0 {
+		c.JSON(http.StatusNotFound, gin.H{
+			"error":   true,
+			"message": "No Data Found",
+		})
+
+		return
+	}
 
 	c.JSON(http.StatusOK, gin.H{
 		"error":   false,
-		"message": message,
-		"data":    transactions,
+		"message": "Get Report",
+		"data":    result,
 	})
 }
