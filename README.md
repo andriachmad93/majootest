@@ -13,3 +13,4 @@ Merchant API :
 - POST : /login
 - GET : /transactions
 - GET : /profile
+- GET : /report
