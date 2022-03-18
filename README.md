@@ -14,3 +14,5 @@ Merchant API :
 - GET : /transactions
 - GET : /profile
 - GET : /report
+
+Jawaban No 1 bagian G : bagi saya, rancangan ERD nya sudah relevan untuk melakukan query join berdasarkan login user.
