@@ -11,9 +11,6 @@ func main() {
 
 	r.POST("/login", controllers.Login)
 	r.GET("/transactions", controllers.Auth, controllers.GetTransaction)
-	r.POST("/transactions", controllers.Auth, controllers.GetTransaction)
-	r.PUT("/transactions", controllers.Auth, controllers.GetTransaction)
-	r.DELETE("/transactions", controllers.Auth, controllers.GetTransaction)
 	r.GET("/profile", controllers.Auth, controllers.Profile)
 	r.GET("/report", controllers.Auth, controllers.GetReport)
 	r.Run(":8080")
